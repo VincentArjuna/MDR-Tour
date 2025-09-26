@@ -89,12 +89,42 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Filament 4**: https://filamentphp.com/docs/4.x/introduction/overview
 - **Filament Shield**: https://filamentphp.com/plugins/bezhansalleh-shield
 
+## Business Application Notes
+
+This is a **Tour & Travel Agency Management System** with the following key components:
+
+### Data Models & Relationships
+- **Packages**: Tour packages with pricing, descriptions, and images
+- **Customers**: Customer information with emergency contacts (optional) 
+- **Bookings**: Many-to-many relationship with customers via `booking_participants` pivot table
+- **Testimonies**: Customer reviews and feedback
+- **Gallery**: Travel destination photos for marketing
+
+### Key Business Logic
+- Bookings use many-to-many relationship - multiple customers can participate in one booking
+- Removed `customer_id` direct relationship in favor of participants selection
+- Payment tracking with automatic calculation of remaining amounts
+- Booking status workflow: pending → confirmed → completed/cancelled
+
+### Admin Dashboard Features
+- Analytics dashboard with booking trends, revenue charts, and key metrics
+- Real-time statistics: total bookings, customers, revenue, monthly trends
+- Recent bookings table with status tracking
+- Comprehensive CRUD for all business entities
+
+### Public Landing Page
+- Modern React/TailwindCSS landing page at root URL (`/`)
+- Sections: Hero, Featured Packages, Testimonials, Gallery, CTA
+- No authentication required - fully public marketing site
+- Smooth scroll navigation between sections
+
 ## Important Notes
 
 - Filament Shield manages roles and permissions automatically
 - Do not create custom role management interfaces that conflict with Shield
 - Shield provides `super_admin` role and resource-based permissions
 - Use Shield's built-in commands for permission generation and management
+- Landing page is separate from admin panel - public vs authenticated areas
 
 ## Best Practices
 
